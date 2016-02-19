@@ -1,0 +1,38 @@
+:imagesdir: images
+:source-highlighter: coderay
+
+== Mike's Example Code
+
+=== Spring Cloud Examples
+
+There are four maven projects for this example. 
+
+.Projects
+eureka:: Netflicks Directory service.  Rest servers register with this service and provide other services with the means to look up services and resolve end points. 
+
+sample-client:: A spring-boot application that uses a Feign rest cleint which looks up the todo service and invokes it 
+
+sample-server:: A spring-boot application that is configured to register a JAX-RS "ToDo" service in eureka.  The JAX-RS implementation uses CXF as the provider.
+
+==== Instructions:
+
+1. Start up the eureka server by running "./gradlew bootRun". It will start up on port
+8761 and serve the Eureka API from "/eureka".  You can navigate to http://localhost:8761/eureka to see its user interface.
+
+2. Start up the sample-sever.  mvn spring-boot:run
+This will kick up the server on port 8080, as well as will start up Hystrix.  You can navigate to hystrix by going to http://localhost:8080/hystrix  Type the following stream url in the box provided: http://localhost:8080/hystrix.stream
+
+Don't worry if it just says "Loading"  that will update once you run the client.
+
+3. Execute the client.  mvn spring-boot:run
+
+The hystrix monitor should now update showing you that you hit the service:
+
+What this accomplished is:
+
+a. It shows how to build a spring boot application taht uses JAX-RS with CXF backing it and auto discover the annotated controllers.
+
+b. It shows how to write the service so that it registers with Eureka and provides a hystrix event stream.
+
+c. It shows how to invoke the service using Feign which auto discovers the end point, will load balance across multiple instances of the service, and uses ribbon to make the rest call.
+
