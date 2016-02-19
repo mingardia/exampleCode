@@ -1,0 +1,2 @@
+firstName,lastName,title,salary,hireDate,departments
+"Jennifer,,Jen",Jones,Marketing,60000.00,02/01/2016,"[com.eis.cloud.model.Department@5b0ca8c, com.eis.cloud.model.Department@5b0ca8d]"

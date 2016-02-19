@@ -1,0 +1,17 @@
+<beanio xmlns="http://www.beanio.org/2012/03"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+    <stream name="employeeFile" format="csv">
+        <record name="employee" class="com.eis.cloud.model.Employee">
+            <field name="firstName" type="string" />
+            <field name="lastName" type="string"/>
+            <field name="title" type="string" />
+            <field name="salary"/>
+            <field name="hireDate" format="MM-dd-yyyy" />
+            <segment name="departments" collection="list" minOccurs="1" maxOccurs="unbounded" class="com.eis.cloud.model.Department">
+                <field name="name" type="string" />
+            </segment>
+        </record>
+    </stream>
+</beanio>
